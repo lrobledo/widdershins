@@ -1,6 +1,6 @@
 # widdershins
-OpenAPI / Swagger / AsyncAPI / Semoasa definition to [Slate](https://github.com/lord/slate) /
-[Shins](https://github.com/mermade/shins) compatible markdown
+OpenAPI / Swagger / AsyncAPI / Semoasa definition to [Slate](https://github.com/slatedocs/slate) /
+[ReSlate](https://github.com/mermade/reslate) compatible markdown
 
 ![Build](https://img.shields.io/travis/Mermade/widdershins/master.svg) [![Tested on APIs.guru](https://api.apis.guru/badges/tested_on.svg)](https://APIs.guru) [![Tested on Mermade OpenAPIs](https://img.shields.io/badge/Additional%20Specs-419-brightgreen.svg)](https://github.com/mermade/OpenAPI_specifications)
 [![Known Vulnerabilities](https://snyk.io/test/npm/widdershins/badge.svg)](https://snyk.io/test/npm/widdershins)
@@ -34,7 +34,7 @@ OpenAPI / Swagger / AsyncAPI / Semoasa definition to [Slate](https://github.com/
 
 ### Getting started
 
-Widdershins is generally used as a stage in an API documentation pipeline. The pipeline begins with an API definition in OpenAPI 3.x, OpenAPI 2.0 (fka Swagger), API Blueprint, AsyncAPI or Semoasa format. Widdershins converts this description into markdown suitable for use by a **renderer**, such as [Slate](https://github.com/lord/slate), [Shins](https://github.com/mermade/shins) or html suitable for use with [ReSpec](https://github.com/w3c/respec).
+Widdershins is generally used as a stage in an API documentation pipeline. The pipeline begins with an API definition in OpenAPI 3.x, OpenAPI 2.0 (fka Swagger), API Blueprint, AsyncAPI or Semoasa format. Widdershins converts this description into markdown suitable for use by a **renderer**, such as [Slate](https://github.com/slatedocs/slate), [ReSlate](https://github.com/mermade/reslate), [Shins](https://github.com/mermade/shins)  (*deprecated*) or html suitable for use with [ReSpec](https://github.com/w3c/respec).
 
 If you need to create your input API definition, [this list of available editors](https://apis.guru/awesome-openapi3/category.html#editors) may be useful.
 
@@ -50,9 +50,10 @@ node widdershins --search false --language_tabs 'ruby:Ruby' 'python:Python' --su
 
 | CLI parameter name | JavaScript parameter name | Type | Default value | Description |
 | --- | --- | --- | --- | --- |
+| --clipboard | options.clipboard | `boolean` | `true` | Sets the value of the `code_clipboard` property in the heading, so that markdown processors can include clipboard support. |
 | --customApiKeyValue | options.customApiKeyValue | `string` | `ApiKey` | Set a custom API key value to use as the API key in generated code examples. |
 | --expandBody | options.expandBody | `boolean` | `false` | If a method's requestBody parameter refers to a schema by reference (not with a inline schema), by default, Widdershins shows only a reference to this parameter. Set this option to true to expand the schema and show all properties in the request body. |
-| --headings | options.headings | `integer` | 2 | Set the value of the `headingLevel` parameter in the header so Shins knows how many heading levels to show in the table of contents. Currently supported only by Shins, not by Slate, which lacks this feature. |
+| --headings | options.headings | `integer` | 2 | Set the value of the `headingLevel` parameter in the header so markdown processors know how many heading levels to show in the table of contents. Currently supported only by Shins, not by Slate, which lacks this feature. |
 | --omitBody | options.omitBody | `boolean` | `false` | By default, Widdershins includes the body parameter as a row in the parameters table before the rows that represent the fields in the body. Set this parameter to omit that body parameter row. |
 | --omitHeader | options.omitHeader | `boolean` | `false` | Omit the header / YAML front-matter in the generated Markdown file. |
 | --resolve | options.resolve | `boolean` | `false` | Resolve external $refs, using the `source` parameter or the input file as the base location. |
@@ -73,10 +74,10 @@ node widdershins --search false --language_tabs 'ruby:Ruby' 'python:Python' --su
 | -m, --maxDepth | options.maxDepth | `integer` | 10 | Maximum depth to show for schema examples. |
 | -o, --outfile | N/A | `string` | None | File to write the output markdown to. If left blank, Widdershins sends the output to stdout. |
 | -r, --raw | **inverse** of options.sample | `boolean` | `false` | Output raw schemas instead of example values. |
-| -s, --search | options.search | `boolean` | `true` | Set the value of the `search` parameter in the header so Markdown processors like Shins include search or not in their output. |
+| -s, --search | options.search | `boolean` | `true` | Set the value of the `search` parameter in the header so Markdown processors like Slate include search or not in their output. |
 | -t, --theme | options.theme | `string` | darkula | Syntax-highlighter theme to use. |
 | -u, --user_templates | options.user_templates | `string` | None | Directory to load override templates from. |
-| -x, --experimental | options.experimental | `boolean` |  | For backwards compatibility only; ignored. |
+| -x, --experimental | options.experimental | `boolean` |  | Use httpSnippet for multipart mediatypes. |
 | -y, --yaml | options.yaml | `boolean` | `false` | Display JSON schemas in YAML format. |
 |  | options.templateCallback | `function` | None | A `function` that is called before and after each template (JavaScript code only). |
 |  | options.toc_footers | `object` | A map of `url`s and `description`s to be added to the ToC footers array (JavaScript code only). |
@@ -163,7 +164,7 @@ Schema.org WebAPI discovery data is included if the `discovery` option above is 
 
 Widdershins supports the `x-code-samples` [vendor-extension](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#operation-object-vendor-extensions) to completely customise your documentation. Alternatively, you can edit the default code-samples in the `templates` sub-directory, or override them using the `user_templates` option to specify a directory containing your templates.
 
-Widdershins supports the use of multiple language tabs with the same language (i.e. plain Javascript and Node.Js). To use this support you must be using Slate (or one of its ports compatible with) version 1.5.0 or higher. [Shins](https://github.com/mermade/shins) versions track Slate version numbers.
+Widdershins supports the use of multiple language tabs with the same language (i.e. plain Javascript and Node.Js). To use this support you must be using Slate (or one of its ports compatible with) version 1.5.0 or higher.
 
 ## Templates
 
@@ -281,6 +282,6 @@ Please feel free to add a link to your API documentation here.
 * [Shutterstock API](https://api-reference.shutterstock.com/)
 * [Shotstack Video Editing API](https://shotstack.io/docs/api/index.html)
 
-### Widdershins and Shins
+### Widdershins and ReSlate
 
-* `Widdershins` works well with Slate, but for a solely Node.js-based experience, why not try the [Shins](https://github.com/mermade/shins) port?
+* `Widdershins` works well with Slate, but for a solely Node.js-based experience, why not try the [ReSlate](https://github.com/mermade/reslate) port?
